@@ -1,0 +1,33 @@
+---
+import { site } from '../siteConfig.ts';
+
+const current = Astro.url;
+
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/about/', label: 'About'},
+	{ href: '/contact/', label: 'Contact'}
+]
+---
+<nav class="fixed w-full top-0 left-0 z-50 bg-white dark:bg-slate-900 shadow border-b border-white/20">
+	<div class="mx-auto max-w-[75rem] px-[5vw] xl:px-0 h-[4.5rem] flex flex-row justify-between items-center">
+		<a href="/" title={ site.name }>
+			<span class="text-xl text-gray-900 dark:text-white">{ site.name }</span>
+		</a>
+		<ul role="menu" class="flex flex-row gap-10">
+			{
+			links.map(link => (
+			<li role="menuitem">
+				<a 
+					href={ link.href } 
+					title={ 'Go to ' + link.label }
+					class="text-gray-900 dark:text-white hover:text-blue-600 transition-colors"
+				>
+					{ link.label }
+				</a>
+			</li>
+				))
+			}
+		</ul>
+	</div>
+</nav>
